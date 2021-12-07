@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="course.by.zhukova.entity.OrderEntity" table="order" schema="shoes_shop">
+        <id name="idorder">
+            <column name="idorder" sql-type="int"/>
+            <generator class="increment"/>
+        </id>
+        <property name="orderCartId" insert="false" update="false">
+            <column name="orderCartID" sql-type="int"/>
+        </property>
+        <property name="orderProductId" insert="false" update="false">
+            <column name="orderProductID" sql-type="int"/>
+        </property>
+        <many-to-one name="cartByOrderCartId" class="course.by.zhukova.entity.CartEntity">
+            <column name="orderCartID"/>
+        </many-to-one>
+        <many-to-one name="productByOrderProductId" class="course.by.zhukova.entity.ProductEntity">
+            <column name="orderProductID"/>
+        </many-to-one>
+    </class>
+</hibernate-mapping>

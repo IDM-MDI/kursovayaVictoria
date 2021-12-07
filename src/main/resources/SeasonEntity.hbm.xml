@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="course.by.zhukova.entity.SeasonEntity" table="season" schema="shoes_shop">
+        <id name="idseason">
+            <column name="idseason" sql-type="int"/>
+            <generator class="increment"/>
+        </id>
+        <property name="seasonName">
+            <column name="seasonName" sql-type="varchar(45)" length="45"/>
+        </property>
+        <property name="seasonMaterialId" insert="false" update="false">
+            <column name="seasonMaterialID" sql-type="int"/>
+        </property>
+        <many-to-one name="materialBySeasonMaterialId" class="course.by.zhukova.entity.MaterialEntity">
+            <column name="seasonMaterialID"/>
+        </many-to-one>
+        <set name="productsByIdseason" inverse="true">
+            <key>
+                <column name="productSeasonID"/>
+            </key>
+            <one-to-many not-found="ignore" class="course.by.zhukova.entity.ProductEntity"/>
+        </set>
+    </class>
+</hibernate-mapping>

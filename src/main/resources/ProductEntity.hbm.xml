@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="course.by.zhukova.entity.ProductEntity" table="product" schema="shoes_shop">
+        <id name="idProduct">
+            <column name="idProduct" sql-type="int"/>
+            <generator class="increment"/>
+        </id>
+        <property name="productManufacturerId" insert="false" update="false">
+            <column name="productManufacturerID" sql-type="int"/>
+        </property>
+        <property name="productColorId" insert="false" update="false">
+            <column name="productColorID" sql-type="int"/>
+        </property>
+        <property name="productSize">
+            <column name="productSize" sql-type="int"/>
+        </property>
+        <property name="productSeasonId" insert="false" update="false">
+            <column name="productSeasonID" sql-type="int"/>
+        </property>
+        <many-to-one name="manufacturerByProductManufacturerId" class="course.by.zhukova.entity.ManufacturerEntity">
+            <column name="productManufacturerID"/>
+        </many-to-one>
+        <many-to-one name="colorByProductColorId" class="course.by.zhukova.entity.ColorEntity">
+            <column name="productColorID"/>
+        </many-to-one>
+        <many-to-one name="seasonByProductSeasonId" class="course.by.zhukova.entity.SeasonEntity">
+            <column name="productSeasonID"/>
+        </many-to-one>
+        <set name="ordersByIdProduct" inverse="true">
+            <key>
+                <column name="orderProductID"/>
+            </key>
+            <one-to-many not-found="ignore" class="course.by.zhukova.entity.OrderEntity"/>
+        </set>
+    </class>
+</hibernate-mapping>

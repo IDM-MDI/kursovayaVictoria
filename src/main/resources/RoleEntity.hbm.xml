@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="course.by.zhukova.entity.RoleEntity" table="role" schema="shoes_shop">
+        <id name="idrole">
+            <column name="idrole" sql-type="int"/>
+            <generator class="increment"/>
+        </id>
+        <property name="roleName">
+            <column name="roleName" sql-type="varchar(45)" length="45"/>
+        </property>
+        <one-to-one name="userByIdrole" class="course.by.zhukova.entity.UserEntity"/>
+    </class>
+</hibernate-mapping>

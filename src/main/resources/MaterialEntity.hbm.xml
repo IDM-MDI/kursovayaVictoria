@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="course.by.zhukova.entity.MaterialEntity" table="material" schema="shoes_shop">
+        <id name="idmaterial">
+            <column name="idmaterial" sql-type="int"/>
+            <generator class="increment"/>
+        </id>
+        <property name="materialInside" insert="false" update="false">
+            <column name="materialInside" sql-type="int"/>
+        </property>
+        <property name="materialOutside" insert="false" update="false">
+            <column name="materialOutside" sql-type="int"/>
+        </property>
+        <property name="materialSole" insert="false" update="false">
+            <column name="materialSole" sql-type="int"/>
+        </property>
+        <property name="materialUpper" insert="false" update="false">
+            <column name="materialUpper" sql-type="int"/>
+        </property>
+        <many-to-one name="materialtypeByMaterialInside" class="course.by.zhukova.entity.MaterialtypeEntity">
+            <column name="materialInside"/>
+        </many-to-one>
+        <many-to-one name="materialtypeByMaterialOutside" class="course.by.zhukova.entity.MaterialtypeEntity">
+            <column name="materialOutside"/>
+        </many-to-one>
+        <many-to-one name="materialtypeByMaterialSole" class="course.by.zhukova.entity.MaterialtypeEntity">
+            <column name="materialSole"/>
+        </many-to-one>
+        <many-to-one name="materialtypeByMaterialUpper" class="course.by.zhukova.entity.MaterialtypeEntity">
+            <column name="materialUpper"/>
+        </many-to-one>
+        <set name="seasonsByIdmaterial" inverse="true">
+            <key>
+                <column name="seasonMaterialID"/>
+            </key>
+            <one-to-many not-found="ignore" class="course.by.zhukova.entity.SeasonEntity"/>
+        </set>
+    </class>
+</hibernate-mapping>

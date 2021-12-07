@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="course.by.zhukova.entity.CountryEntity" table="country" schema="shoes_shop">
+        <id name="idcountry">
+            <column name="idcountry" sql-type="int"/>
+            <generator class="increment"/>
+        </id>
+        <property name="countryName">
+            <column name="countryName" sql-type="varchar(45)" length="45"/>
+        </property>
+        <set name="manufacturersByIdcountry" inverse="true">
+            <key>
+                <column name="manufacturerCountry" not-null="true"/>
+            </key>
+            <one-to-many not-found="ignore" class="course.by.zhukova.entity.ManufacturerEntity"/>
+        </set>
+    </class>
+</hibernate-mapping>
