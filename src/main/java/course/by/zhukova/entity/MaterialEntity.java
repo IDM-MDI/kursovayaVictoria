@@ -12,11 +12,6 @@ public class MaterialEntity
     private Integer materialSole;
     private Integer materialUpper;
     private Integer materialSeason;
-    private MaterialtypeEntity materialtypeByMaterialInside;
-    private MaterialtypeEntity materialtypeByMaterialOutside;
-    private MaterialtypeEntity materialtypeByMaterialSole;
-    private MaterialtypeEntity materialtypeByMaterialUpper;
-    private SeasonEntity seasonByMaterialSeason;
 
     @Id
     @Column(name = "idmaterial", nullable = false)
@@ -123,65 +118,5 @@ public class MaterialEntity
         result = 31 * result + (materialUpper != null ? materialUpper.hashCode() : 0);
         result = 31 * result + (materialSeason != null ? materialSeason.hashCode() : 0);
         return result;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "materialInside", referencedColumnName = "idmaterialtype", nullable = false)
-    public MaterialtypeEntity getMaterialtypeByMaterialInside()
-    {
-        return materialtypeByMaterialInside;
-    }
-
-    public void setMaterialtypeByMaterialInside(MaterialtypeEntity materialtypeByMaterialInside)
-    {
-        this.materialtypeByMaterialInside = materialtypeByMaterialInside;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "materialOutside", referencedColumnName = "idmaterialtype", nullable = false)
-    public MaterialtypeEntity getMaterialtypeByMaterialOutside()
-    {
-        return materialtypeByMaterialOutside;
-    }
-
-    public void setMaterialtypeByMaterialOutside(MaterialtypeEntity materialtypeByMaterialOutside)
-    {
-        this.materialtypeByMaterialOutside = materialtypeByMaterialOutside;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "materialSole", referencedColumnName = "idmaterialtype", nullable = false)
-    public MaterialtypeEntity getMaterialtypeByMaterialSole()
-    {
-        return materialtypeByMaterialSole;
-    }
-
-    public void setMaterialtypeByMaterialSole(MaterialtypeEntity materialtypeByMaterialSole)
-    {
-        this.materialtypeByMaterialSole = materialtypeByMaterialSole;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "materialUpper", referencedColumnName = "idmaterialtype", nullable = false)
-    public MaterialtypeEntity getMaterialtypeByMaterialUpper()
-    {
-        return materialtypeByMaterialUpper;
-    }
-
-    public void setMaterialtypeByMaterialUpper(MaterialtypeEntity materialtypeByMaterialUpper)
-    {
-        this.materialtypeByMaterialUpper = materialtypeByMaterialUpper;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "materialSeason", referencedColumnName = "idseason")
-    public SeasonEntity getSeasonByMaterialSeason()
-    {
-        return seasonByMaterialSeason;
-    }
-
-    public void setSeasonByMaterialSeason(SeasonEntity seasonByMaterialSeason)
-    {
-        this.seasonByMaterialSeason = seasonByMaterialSeason;
     }
 }

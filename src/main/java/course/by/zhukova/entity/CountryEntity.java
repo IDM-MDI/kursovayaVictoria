@@ -1,7 +1,6 @@
 package course.by.zhukova.entity;
 
 import javax.persistence.*;
-import java.util.Collection;
 
 @Entity
 @Table(name = "country", schema = "shoes_shop", catalog = "")
@@ -9,7 +8,6 @@ public class CountryEntity
 {
     private Integer idcountry;
     private String countryName;
-    private Collection<ManufacturerEntity> manufacturersByIdcountry;
 
     @Id
     @Column(name = "idcountry", nullable = false)
@@ -55,16 +53,5 @@ public class CountryEntity
         int result = idcountry != null ? idcountry.hashCode() : 0;
         result = 31 * result + (countryName != null ? countryName.hashCode() : 0);
         return result;
-    }
-
-    @OneToMany(mappedBy = "countryByManufacturerCountry")
-    public Collection<ManufacturerEntity> getManufacturersByIdcountry()
-    {
-        return manufacturersByIdcountry;
-    }
-
-    public void setManufacturersByIdcountry(Collection<ManufacturerEntity> manufacturersByIdcountry)
-    {
-        this.manufacturersByIdcountry = manufacturersByIdcountry;
     }
 }

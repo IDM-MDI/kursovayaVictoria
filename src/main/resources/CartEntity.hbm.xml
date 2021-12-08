@@ -12,14 +12,5 @@
         <property name="cartUserId">
             <column name="cartUserID" sql-type="int"/>
         </property>
-        <many-to-one name="userByCartUserId" class="course.by.zhukova.entity.UserEntity">
-            <column name="cartUserID"/>
-        </many-to-one>
-        <set name="ordersByIdcart" inverse="true">
-            <key>
-                <column name="orderCartID"/>
-            </key>
-            <one-to-many not-found="ignore" class="course.by.zhukova.entity.OrderEntity"/>
-        </set>
     </class>
 </hibernate-mapping>

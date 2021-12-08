@@ -15,11 +15,5 @@
         <property name="orderProductId">
             <column name="orderProductID" sql-type="int"/>
         </property>
-        <many-to-one name="cartByOrderCartId" class="course.by.zhukova.entity.CartEntity">
-            <column name="orderCartID"/>
-        </many-to-one>
-        <many-to-one name="productByOrderProductId" class="course.by.zhukova.entity.ProductEntity">
-            <column name="orderProductID"/>
-        </many-to-one>
     </class>
 </hibernate-mapping>

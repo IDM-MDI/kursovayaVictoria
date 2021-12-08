@@ -1,7 +1,6 @@
 package course.by.zhukova.entity;
 
 import javax.persistence.*;
-import java.util.Collection;
 
 @Entity
 @Table(name = "manufacturer", schema = "shoes_shop", catalog = "")
@@ -12,8 +11,6 @@ public class ManufacturerEntity
     private String phoneNumber;
     private String manufacturerMail;
     private Integer manufacturerCountry;
-    private CountryEntity countryByManufacturerCountry;
-    private Collection<ProductEntity> productsByIdmanufacturer;
 
     @Id
     @Column(name = "idmanufacturer", nullable = false)
@@ -105,28 +102,5 @@ public class ManufacturerEntity
         result = 31 * result + (manufacturerMail != null ? manufacturerMail.hashCode() : 0);
         result = 31 * result + (manufacturerCountry != null ? manufacturerCountry.hashCode() : 0);
         return result;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "manufacturerCountry", referencedColumnName = "idcountry")
-    public CountryEntity getCountryByManufacturerCountry()
-    {
-        return countryByManufacturerCountry;
-    }
-
-    public void setCountryByManufacturerCountry(CountryEntity countryByManufacturerCountry)
-    {
-        this.countryByManufacturerCountry = countryByManufacturerCountry;
-    }
-
-    @OneToMany(mappedBy = "manufacturerByProductManufacturerId")
-    public Collection<ProductEntity> getProductsByIdmanufacturer()
-    {
-        return productsByIdmanufacturer;
-    }
-
-    public void setProductsByIdmanufacturer(Collection<ProductEntity> productsByIdmanufacturer)
-    {
-        this.productsByIdmanufacturer = productsByIdmanufacturer;
     }
 }

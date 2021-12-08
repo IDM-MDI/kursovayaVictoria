@@ -12,29 +12,5 @@
         <property name="materialtypeName">
             <column name="materialtypeName" sql-type="varchar(45)" length="45"/>
         </property>
-        <set name="materialsByIdmaterialtype" inverse="true">
-            <key>
-                <column name="materialInside"/>
-            </key>
-            <one-to-many not-found="ignore" class="course.by.zhukova.entity.MaterialEntity"/>
-        </set>
-        <set name="materialsByIdmaterialtype_0" inverse="true">
-            <key>
-                <column name="materialOutside"/>
-            </key>
-            <one-to-many not-found="ignore" class="course.by.zhukova.entity.MaterialEntity"/>
-        </set>
-        <set name="materialsByIdmaterialtype_1" inverse="true">
-            <key>
-                <column name="materialSole"/>
-            </key>
-            <one-to-many not-found="ignore" class="course.by.zhukova.entity.MaterialEntity"/>
-        </set>
-        <set name="materialsByIdmaterialtype_2" inverse="true">
-            <key>
-                <column name="materialUpper"/>
-            </key>
-            <one-to-many not-found="ignore" class="course.by.zhukova.entity.MaterialEntity"/>
-        </set>
     </class>
 </hibernate-mapping>

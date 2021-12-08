@@ -154,7 +154,7 @@ public class ProductMenu extends Menu
         session.getTransaction().commit();
         session.close();
     }
-    private void showProduct()
+    private void showProduct()                                  //TODO: Make joins
     {
         String formats = "%d\t\t%s\t%d";
         System.out.println();
@@ -192,11 +192,40 @@ public class ProductMenu extends Menu
         session.getTransaction().commit();
         session.close();
     }
-    private String choiceColor(List<ColorEntity> colors)
+    private ProductEntity createProduct()
+    {
+        ProductEntity entity = new ProductEntity();
+
+        entity.setProductColorId(Integer.parseInt(scanner.nextLine()));
+
+        entity.setProductSize(Integer.parseInt(scanner.nextLine()));
+        entity.setProductSeasonId(Integer.parseInt(scanner.nextLine()));
+        entity.setProductManufacturerId(Integer.parseInt(scanner.nextLine()));
+
+        return entity;
+    }
+
+    private String choiceColor(List<ColorEntity> colors)        //TODO: Make choice
     {
         for(ColorEntity i:colors)
         {
             System.out.println(i.getIdcolor() + " : " + i.getColorName());
+        }
+        return scanner.nextLine();
+    }
+    private String choiceManuf(List<ManufacturerEntity> manufacturers)  //TODO: Make choice
+    {
+        for(ManufacturerEntity i:manufacturers)
+        {
+            System.out.println(i.getIdmanufacturer() + " : " + i.getManufacturerName());
+        }
+        return scanner.nextLine();
+    }
+    private String choiceSeason(List<SeasonEntity> seasons)             //TODO: Make choice
+    {
+        for(SeasonEntity i:seasons)
+        {
+            System.out.println(i.getIdseason() + " : " + i.getSeasonName());
         }
         return scanner.nextLine();
     }
@@ -224,18 +253,31 @@ public class ProductMenu extends Menu
         }
         return result;
     }
-    private ProductEntity createProduct()
+    private boolean isManufactExist(Integer id)
     {
-        ProductEntity entity = new ProductEntity();
-
-        entity.setProductColorId(Integer.parseInt(scanner.nextLine()));
-
-        entity.setProductSize(Integer.parseInt(scanner.nextLine()));
-        entity.setProductSeasonId(Integer.parseInt(scanner.nextLine()));
-        entity.setProductManufacturerId(Integer.parseInt(scanner.nextLine()));
-
-        return entity;
+        boolean result = false;
+        for (ManufacturerEntity i: manufacturers)
+        {
+            if(i.getIdmanufacturer().equals(id))
+            {
+                result = true;
+            }
+        }
+        return result;
     }
+    private boolean isSeasonExist(Integer id)
+    {
+        boolean result = false;
+        for (SeasonEntity i: seasons)
+        {
+            if(i.getIdseason().equals(id))
+            {
+                result = true;
+            }
+        }
+        return result;
+    }
+
     private boolean isListsEmpty()
     {
         return colors.isEmpty() && manufacturers.isEmpty() && seasons.isEmpty();

@@ -12,11 +12,5 @@
         <property name="colorName">
             <column name="colorName" sql-type="varchar(20)" length="20"/>
         </property>
-        <set name="productsByIdcolor" inverse="true">
-            <key>
-                <column name="productColorID"/>
-            </key>
-            <one-to-many not-found="ignore" class="course.by.zhukova.entity.ProductEntity"/>
-        </set>
     </class>
 </hibernate-mapping>

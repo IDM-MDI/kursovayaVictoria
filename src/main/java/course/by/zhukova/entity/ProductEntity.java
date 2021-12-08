@@ -1,7 +1,6 @@
 package course.by.zhukova.entity;
 
 import javax.persistence.*;
-import java.util.Collection;
 
 @Entity
 @Table(name = "product", schema = "shoes_shop", catalog = "")
@@ -12,10 +11,6 @@ public class ProductEntity
     private Integer productColorId;
     private Integer productSize;
     private Integer productSeasonId;
-    private Collection<OrderEntity> ordersByIdProduct;
-    private ManufacturerEntity manufacturerByProductManufacturerId;
-    private ColorEntity colorByProductColorId;
-    private SeasonEntity seasonByProductSeasonId;
 
     @Id
     @Column(name = "idProduct", nullable = false)
@@ -106,52 +101,5 @@ public class ProductEntity
         result = 31 * result + (productSize != null ? productSize.hashCode() : 0);
         result = 31 * result + (productSeasonId != null ? productSeasonId.hashCode() : 0);
         return result;
-    }
-
-    @OneToMany(mappedBy = "productByOrderProductId")
-    public Collection<OrderEntity> getOrdersByIdProduct()
-    {
-        return ordersByIdProduct;
-    }
-
-    public void setOrdersByIdProduct(Collection<OrderEntity> ordersByIdProduct)
-    {
-        this.ordersByIdProduct = ordersByIdProduct;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "productManufacturerID", referencedColumnName = "idmanufacturer", nullable = false)
-    public ManufacturerEntity getManufacturerByProductManufacturerId()
-    {
-        return manufacturerByProductManufacturerId;
-    }
-
-    public void setManufacturerByProductManufacturerId(ManufacturerEntity manufacturerByProductManufacturerId)
-    {
-        this.manufacturerByProductManufacturerId = manufacturerByProductManufacturerId;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "productColorID", referencedColumnName = "idcolor", nullable = false)
-    public ColorEntity getColorByProductColorId()
-    {
-        return colorByProductColorId;
-    }
-
-    public void setColorByProductColorId(ColorEntity colorByProductColorId)
-    {
-        this.colorByProductColorId = colorByProductColorId;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "productSeasonID", referencedColumnName = "idseason", nullable = false)
-    public SeasonEntity getSeasonByProductSeasonId()
-    {
-        return seasonByProductSeasonId;
-    }
-
-    public void setSeasonByProductSeasonId(SeasonEntity seasonByProductSeasonId)
-    {
-        this.seasonByProductSeasonId = seasonByProductSeasonId;
     }
 }

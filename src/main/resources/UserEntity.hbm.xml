@@ -24,12 +24,5 @@
         <property name="userCreateTime">
             <column name="userCreateTime" sql-type="varchar(45)" length="45" not-null="true"/>
         </property>
-        <one-to-one name="roleByIduser" class="course.by.zhukova.entity.RoleEntity"/>
-        <set name="cartsByIduser" inverse="true">
-            <key>
-                <column name="cartUserID"/>
-            </key>
-            <one-to-many not-found="ignore" class="course.by.zhukova.entity.CartEntity"/>
-        </set>
     </class>
 </hibernate-mapping>

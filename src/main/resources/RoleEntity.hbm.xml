@@ -12,6 +12,5 @@
         <property name="roleName">
             <column name="roleName" sql-type="varchar(45)" length="45"/>
         </property>
-        <one-to-one name="userByIdrole" class="course.by.zhukova.entity.UserEntity"/>
     </class>
 </hibernate-mapping>

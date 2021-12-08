@@ -20,12 +20,8 @@ public class UsersMenu extends Menu
     @Override
     public void showMenu()
     {
-        System.out.println("1)Show users");
-        if(isAdmin())
-        {
-            System.out.println("2)Update user" +
-                    "\n3)Delete user");
-        }
+        System.out.println("1)Buy product");
+        System.out.println("2)Show users");
         System.out.println("9)Back" +
                 "\n0)Exit");
     }

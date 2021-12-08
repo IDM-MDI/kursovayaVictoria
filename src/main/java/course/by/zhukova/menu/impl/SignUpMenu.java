@@ -54,11 +54,9 @@ public class SignUpMenu extends Menu
         Session session = factory.openSession();
         session.beginTransaction();
 
-        Query<RoleEntity> two = session.createQuery("from RoleEntity",RoleEntity.class);
-        roleList = two.getResultList();
         user.setUserRoleId(1);
-        user.setRoleByIduser(getUserRole());
         user.setUserCreateTime(LocalDateTime.now().toString());
+
         session.save(this.user);
         session.getTransaction().commit();
         session.close();

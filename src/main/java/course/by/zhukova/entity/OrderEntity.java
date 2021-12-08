@@ -9,8 +9,6 @@ public class OrderEntity
     private Integer idorder;
     private Integer orderCartId;
     private Integer orderProductId;
-    private CartEntity cartByOrderCartId;
-    private ProductEntity productByOrderProductId;
 
     @Id
     @Column(name = "idorder", nullable = false)
@@ -71,29 +69,5 @@ public class OrderEntity
         result = 31 * result + (orderCartId != null ? orderCartId.hashCode() : 0);
         result = 31 * result + (orderProductId != null ? orderProductId.hashCode() : 0);
         return result;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "orderCartID", referencedColumnName = "idcart", nullable = false)
-    public CartEntity getCartByOrderCartId()
-    {
-        return cartByOrderCartId;
-    }
-
-    public void setCartByOrderCartId(CartEntity cartByOrderCartId)
-    {
-        this.cartByOrderCartId = cartByOrderCartId;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "orderProductID", referencedColumnName = "idProduct", nullable = false)
-    public ProductEntity getProductByOrderProductId()
-    {
-        return productByOrderProductId;
-    }
-
-    public void setProductByOrderProductId(ProductEntity productByOrderProductId)
-    {
-        this.productByOrderProductId = productByOrderProductId;
     }
 }

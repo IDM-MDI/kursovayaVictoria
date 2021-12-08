@@ -8,7 +8,6 @@ public class RoleEntity
 {
     private Integer idrole;
     private String roleName;
-    private UserEntity userByIdrole;
 
     @Id
     @Column(name = "idrole", nullable = false)
@@ -54,16 +53,5 @@ public class RoleEntity
         int result = idrole != null ? idrole.hashCode() : 0;
         result = 31 * result + (roleName != null ? roleName.hashCode() : 0);
         return result;
-    }
-
-    @OneToOne(mappedBy = "roleByIduser")
-    public UserEntity getUserByIdrole()
-    {
-        return userByIdrole;
-    }
-
-    public void setUserByIdrole(UserEntity userByIdrole)
-    {
-        this.userByIdrole = userByIdrole;
     }
 }

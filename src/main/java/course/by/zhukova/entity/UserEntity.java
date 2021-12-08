@@ -1,7 +1,6 @@
 package course.by.zhukova.entity;
 
 import javax.persistence.*;
-import java.util.Collection;
 
 @Entity
 @Table(name = "user", schema = "shoes_shop", catalog = "")
@@ -13,8 +12,6 @@ public class UserEntity
     private String userPass;
     private Integer userRoleId;
     private String userCreateTime;
-    private Collection<CartEntity> cartsByIduser;
-    private RoleEntity roleByIduser;
 
     @Id
     @Column(name = "iduser", nullable = false)
@@ -117,28 +114,5 @@ public class UserEntity
         result = 31 * result + (userRoleId != null ? userRoleId.hashCode() : 0);
         result = 31 * result + (userCreateTime != null ? userCreateTime.hashCode() : 0);
         return result;
-    }
-
-    @OneToMany(mappedBy = "userByCartUserId")
-    public Collection<CartEntity> getCartsByIduser()
-    {
-        return cartsByIduser;
-    }
-
-    public void setCartsByIduser(Collection<CartEntity> cartsByIduser)
-    {
-        this.cartsByIduser = cartsByIduser;
-    }
-
-    @OneToOne
-    @JoinColumn(name = "iduser", referencedColumnName = "idrole", nullable = false)
-    public RoleEntity getRoleByIduser()
-    {
-        return roleByIduser;
-    }
-
-    public void setRoleByIduser(RoleEntity roleByIduser)
-    {
-        this.roleByIduser = roleByIduser;
     }
 }

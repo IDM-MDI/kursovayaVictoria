@@ -21,20 +21,5 @@
         <property name="productSeasonId">
             <column name="productSeasonID" sql-type="int"/>
         </property>
-        <many-to-one name="manufacturerByProductManufacturerId" class="course.by.zhukova.entity.ManufacturerEntity">
-            <column name="productManufacturerID"/>
-        </many-to-one>
-        <many-to-one name="colorByProductColorId" class="course.by.zhukova.entity.ColorEntity">
-            <column name="productColorID"/>
-        </many-to-one>
-        <many-to-one name="seasonByProductSeasonId" class="course.by.zhukova.entity.SeasonEntity">
-            <column name="productSeasonID"/>
-        </many-to-one>
-        <set name="ordersByIdProduct" inverse="true">
-            <key>
-                <column name="orderProductID"/>
-            </key>
-            <one-to-many not-found="ignore" class="course.by.zhukova.entity.OrderEntity"/>
-        </set>
     </class>
 </hibernate-mapping>
