@@ -9,9 +9,8 @@ public class SeasonEntity
 {
     private Integer idseason;
     private String seasonName;
-    private Integer seasonMaterialId;
+    private Collection<MaterialEntity> materialsByIdseason;
     private Collection<ProductEntity> productsByIdseason;
-    private MaterialEntity materialBySeasonMaterialId;
 
     @Id
     @Column(name = "idseason", nullable = false)
@@ -37,18 +36,6 @@ public class SeasonEntity
         this.seasonName = seasonName;
     }
 
-    @Basic
-    @Column(name = "seasonMaterialID", nullable = false)
-    public Integer getSeasonMaterialId()
-    {
-        return seasonMaterialId;
-    }
-
-    public void setSeasonMaterialId(Integer seasonMaterialId)
-    {
-        this.seasonMaterialId = seasonMaterialId;
-    }
-
     @Override
     public boolean equals(Object o)
     {
@@ -59,8 +46,6 @@ public class SeasonEntity
 
         if (idseason != null ? !idseason.equals(that.idseason) : that.idseason != null) return false;
         if (seasonName != null ? !seasonName.equals(that.seasonName) : that.seasonName != null) return false;
-        if (seasonMaterialId != null ? !seasonMaterialId.equals(that.seasonMaterialId) : that.seasonMaterialId != null)
-            return false;
 
         return true;
     }
@@ -70,8 +55,18 @@ public class SeasonEntity
     {
         int result = idseason != null ? idseason.hashCode() : 0;
         result = 31 * result + (seasonName != null ? seasonName.hashCode() : 0);
-        result = 31 * result + (seasonMaterialId != null ? seasonMaterialId.hashCode() : 0);
         return result;
+    }
+
+    @OneToMany(mappedBy = "seasonByMaterialSeason")
+    public Collection<MaterialEntity> getMaterialsByIdseason()
+    {
+        return materialsByIdseason;
+    }
+
+    public void setMaterialsByIdseason(Collection<MaterialEntity> materialsByIdseason)
+    {
+        this.materialsByIdseason = materialsByIdseason;
     }
 
     @OneToMany(mappedBy = "seasonByProductSeasonId")
@@ -83,17 +78,5 @@ public class SeasonEntity
     public void setProductsByIdseason(Collection<ProductEntity> productsByIdseason)
     {
         this.productsByIdseason = productsByIdseason;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "seasonMaterialID", referencedColumnName = "idmaterial", nullable = false)
-    public MaterialEntity getMaterialBySeasonMaterialId()
-    {
-        return materialBySeasonMaterialId;
-    }
-
-    public void setMaterialBySeasonMaterialId(MaterialEntity materialBySeasonMaterialId)
-    {
-        this.materialBySeasonMaterialId = materialBySeasonMaterialId;
     }
 }

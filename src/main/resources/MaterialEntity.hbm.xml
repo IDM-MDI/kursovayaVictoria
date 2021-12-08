@@ -9,17 +9,20 @@
             <column name="idmaterial" sql-type="int"/>
             <generator class="increment"/>
         </id>
-        <property name="materialInside" insert="false" update="false">
+        <property name="materialInside">
             <column name="materialInside" sql-type="int"/>
         </property>
-        <property name="materialOutside" insert="false" update="false">
+        <property name="materialOutside">
             <column name="materialOutside" sql-type="int"/>
         </property>
-        <property name="materialSole" insert="false" update="false">
+        <property name="materialSole">
             <column name="materialSole" sql-type="int"/>
         </property>
-        <property name="materialUpper" insert="false" update="false">
+        <property name="materialUpper">
             <column name="materialUpper" sql-type="int"/>
+        </property>
+        <property name="materialSeason">
+            <column name="materialSeason" sql-type="int" not-null="true"/>
         </property>
         <many-to-one name="materialtypeByMaterialInside" class="course.by.zhukova.entity.MaterialtypeEntity">
             <column name="materialInside"/>
@@ -33,11 +36,8 @@
         <many-to-one name="materialtypeByMaterialUpper" class="course.by.zhukova.entity.MaterialtypeEntity">
             <column name="materialUpper"/>
         </many-to-one>
-        <set name="seasonsByIdmaterial" inverse="true">
-            <key>
-                <column name="seasonMaterialID"/>
-            </key>
-            <one-to-many not-found="ignore" class="course.by.zhukova.entity.SeasonEntity"/>
-        </set>
+        <many-to-one name="seasonByMaterialSeason" class="course.by.zhukova.entity.SeasonEntity">
+            <column name="materialSeason" not-null="true"/>
+        </many-to-one>
     </class>
 </hibernate-mapping>

@@ -12,12 +12,12 @@
         <property name="seasonName">
             <column name="seasonName" sql-type="varchar(45)" length="45"/>
         </property>
-        <property name="seasonMaterialId" insert="false" update="false">
-            <column name="seasonMaterialID" sql-type="int"/>
-        </property>
-        <many-to-one name="materialBySeasonMaterialId" class="course.by.zhukova.entity.MaterialEntity">
-            <column name="seasonMaterialID"/>
-        </many-to-one>
+        <set name="materialsByIdseason" inverse="true">
+            <key>
+                <column name="materialSeason" not-null="true"/>
+            </key>
+            <one-to-many not-found="ignore" class="course.by.zhukova.entity.MaterialEntity"/>
+        </set>
         <set name="productsByIdseason" inverse="true">
             <key>
                 <column name="productSeasonID"/>

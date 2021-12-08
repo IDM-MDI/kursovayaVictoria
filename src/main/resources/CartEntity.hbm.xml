@@ -9,7 +9,7 @@
             <column name="idcart" sql-type="int"/>
             <generator class="increment"/>
         </id>
-        <property name="cartUserId" insert="false" update="false">
+        <property name="cartUserId">
             <column name="cartUserID" sql-type="int"/>
         </property>
         <many-to-one name="userByCartUserId" class="course.by.zhukova.entity.UserEntity">

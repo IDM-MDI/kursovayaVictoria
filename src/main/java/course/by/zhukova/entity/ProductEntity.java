@@ -83,15 +83,15 @@ public class ProductEntity
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        ProductEntity that = (ProductEntity) o;
+        ProductEntity entity = (ProductEntity) o;
 
-        if (idProduct != null ? !idProduct.equals(that.idProduct) : that.idProduct != null) return false;
-        if (productManufacturerId != null ? !productManufacturerId.equals(that.productManufacturerId) : that.productManufacturerId != null)
+        if (idProduct != null ? !idProduct.equals(entity.idProduct) : entity.idProduct != null) return false;
+        if (productManufacturerId != null ? !productManufacturerId.equals(entity.productManufacturerId) : entity.productManufacturerId != null)
             return false;
-        if (productColorId != null ? !productColorId.equals(that.productColorId) : that.productColorId != null)
+        if (productColorId != null ? !productColorId.equals(entity.productColorId) : entity.productColorId != null)
             return false;
-        if (productSize != null ? !productSize.equals(that.productSize) : that.productSize != null) return false;
-        if (productSeasonId != null ? !productSeasonId.equals(that.productSeasonId) : that.productSeasonId != null)
+        if (productSize != null ? !productSize.equals(entity.productSize) : entity.productSize != null) return false;
+        if (productSeasonId != null ? !productSeasonId.equals(entity.productSeasonId) : entity.productSeasonId != null)
             return false;
 
         return true;

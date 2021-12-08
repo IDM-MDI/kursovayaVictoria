@@ -9,16 +9,16 @@
             <column name="idProduct" sql-type="int"/>
             <generator class="increment"/>
         </id>
-        <property name="productManufacturerId" insert="false" update="false">
+        <property name="productManufacturerId">
             <column name="productManufacturerID" sql-type="int"/>
         </property>
-        <property name="productColorId" insert="false" update="false">
+        <property name="productColorId">
             <column name="productColorID" sql-type="int"/>
         </property>
         <property name="productSize">
             <column name="productSize" sql-type="int"/>
         </property>
-        <property name="productSeasonId" insert="false" update="false">
+        <property name="productSeasonId">
             <column name="productSeasonID" sql-type="int"/>
         </property>
         <many-to-one name="manufacturerByProductManufacturerId" class="course.by.zhukova.entity.ManufacturerEntity">

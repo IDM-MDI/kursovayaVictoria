@@ -9,10 +9,10 @@
             <column name="idorder" sql-type="int"/>
             <generator class="increment"/>
         </id>
-        <property name="orderCartId" insert="false" update="false">
+        <property name="orderCartId">
             <column name="orderCartID" sql-type="int"/>
         </property>
-        <property name="orderProductId" insert="false" update="false">
+        <property name="orderProductId">
             <column name="orderProductID" sql-type="int"/>
         </property>
         <many-to-one name="cartByOrderCartId" class="course.by.zhukova.entity.CartEntity">
