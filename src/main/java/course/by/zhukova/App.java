@@ -37,12 +37,9 @@ public class App
 //        session.getTransaction().commit();
 //
 //        session.close();
-        UserEntity user = new UserEntity();
-        user.setUserRoleId(2);
-        ProductMenu menu = new ProductMenu(user);
-        menu.nextMenu(user);
-//        MainMenu menu = new MainMenu();
-//        menu.start();
+
+        MainMenu menu = new MainMenu();
+        menu.start();
     }
     
 }

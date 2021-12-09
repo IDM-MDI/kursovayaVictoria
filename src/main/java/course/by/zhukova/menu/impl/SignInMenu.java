@@ -47,7 +47,7 @@ public class SignInMenu extends Menu
             {
                 return new AdminMenu(this.user);
             }
-            return new UserMenu(this.user);
+            return new UsersMenu(this.user);
         }
         else
         {

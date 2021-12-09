@@ -1,7 +1,7 @@
 package course.by.zhukova.menu.impl;
 
 import course.by.zhukova.entity.CartEntity;
-import course.by.zhukova.entity.OrderEntity;
+import course.by.zhukova.entity.OrdersEntity;
 import course.by.zhukova.entity.ProductEntity;
 import course.by.zhukova.entity.UserEntity;
 import course.by.zhukova.menu.Menu;
@@ -10,6 +10,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.query.NativeQuery;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -24,7 +25,7 @@ public class UsersMenu extends Menu
     private String input;
     private UserEntity user;
     private List<ProductEntity> productEntityList;
-    private List<OrderEntity> orderEntities;
+    private List<OrdersEntity> orderEntities;
     private List<CartEntity> cartEntities;
     private ProductMenu menu;
 
@@ -43,7 +44,7 @@ public class UsersMenu extends Menu
     @Override
     public void showMenu()
     {
-        System.out.println("1)Buy product");
+        System.out.println("\n1)Buy product");
         System.out.println("2)Show your cart");
         System.out.println("3)Show your account info");
         System.out.println("9)Back" +
@@ -94,7 +95,7 @@ public class UsersMenu extends Menu
         List<ProductEntity> list = findProducts(findOrderID(findCartID()));
         for (ProductEntity i: list)
         {
-            System.out.print(i.getProductName() + ", ");
+            System.out.print(i.getProductName() + "\t");
         }
         System.out.print(" }");
     }
@@ -116,16 +117,15 @@ public class UsersMenu extends Menu
                 + "\nPassword: " + this.user.getUserPass()
                 + "\nName: " + this.user.getUserName()
                 + "\nRegistration time: " + this.user.getUserCreateTime()
-                + "\nRole: Admin");
+                + "\nRole: User");
     }
     private void getAllInfo()
     {
         Session session = factory.openSession();
 
         session.beginTransaction();
-
-        cartEntities = session.createQuery("from CartEntity ",CartEntity.class).getResultList();
-        orderEntities = session.createQuery("from OrderEntity ",OrderEntity.class).getResultList();
+        cartEntities = session.createQuery("from CartEntity",CartEntity.class).getResultList();
+        orderEntities = session.createQuery("from OrdersEntity ",OrdersEntity.class).getResultList();
         productEntityList = menu.getProductList();
         session.getTransaction().commit();
         session.close();
@@ -148,7 +148,7 @@ public class UsersMenu extends Menu
     {
         List<Integer> result = new ArrayList<>();
 
-        for (OrderEntity orderEntity : orderEntities)
+        for (OrdersEntity orderEntity : orderEntities)
         {
             for (int j = 0; j < integers.size(); j++)
             {

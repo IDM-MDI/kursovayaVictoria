@@ -22,8 +22,6 @@
       <mapping resource="MaterialEntity.hbm.xml"/>
       <mapping class="course.by.zhukova.entity.MaterialtypeEntity"/>
       <mapping resource="MaterialtypeEntity.hbm.xml"/>
-    <mapping class="course.by.zhukova.entity.OrderEntity"/>
-    <mapping resource="OrderEntity.hbm.xml"/>
     <mapping class="course.by.zhukova.entity.ProductEntity"/>
     <mapping resource="ProductEntity.hbm.xml"/>
     <mapping resource="RoleEntity.hbm.xml"/>
@@ -32,5 +30,7 @@
     <mapping class="course.by.zhukova.entity.SeasonEntity"/>
     <mapping class="course.by.zhukova.entity.UserEntity"/>
     <mapping resource="UserEntity.hbm.xml"/>
+    <mapping class="course.by.zhukova.entity.OrdersEntity"/>
+    <mapping resource="OrdersEntity.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

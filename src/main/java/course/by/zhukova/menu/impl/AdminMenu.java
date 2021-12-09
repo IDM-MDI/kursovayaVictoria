@@ -83,7 +83,7 @@ public class AdminMenu extends Menu
         Session session = factory.openSession();
 
         session.beginTransaction();
-        List l = session.createQuery("SELECT u.id,u.userName,u..userLogin,u.userPass,r.roleName,u.userCreateTime " +
+        List l = session.createQuery("SELECT u.id,u.userName,u.userLogin,u.userPass,r.roleName,u.userCreateTime " +
                 "FROM UserEntity u " +
                 "LEFT JOIN RoleEntity r on u.userRoleId = r.id ").getResultList();
 

@@ -3,8 +3,8 @@ package course.by.zhukova.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "order", schema = "shoes_shop", catalog = "")
-public class OrderEntity
+@Table(name = "orders", schema = "shoes_shop", catalog = "")
+public class OrdersEntity
 {
     private Integer idorder;
     private Integer orderCartId;
@@ -52,7 +52,7 @@ public class OrderEntity
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        OrderEntity that = (OrderEntity) o;
+        OrdersEntity that = (OrdersEntity) o;
 
         if (idorder != null ? !idorder.equals(that.idorder) : that.idorder != null) return false;
         if (orderCartId != null ? !orderCartId.equals(that.orderCartId) : that.orderCartId != null) return false;

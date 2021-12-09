@@ -120,7 +120,7 @@ public class ProductMenu extends Menu
                     }
                     else
                     {
-                        return new UserMenu(this.user);
+                        return new UsersMenu(this.user);
                     }
                 }
                 case "0" -> {
@@ -178,7 +178,7 @@ public class ProductMenu extends Menu
 
         String formats = "%s\t%s\t\t%s\t\t%s";
         String formats1 = "%s\t\t\t%s\t%s\t%s\t%s";
-        System.out.println(String.format(formats,"MaterialID","MaterialInside","MaterialOutside","MaterialSole","MaterialUpper"));
+        System.out.println(String.format(formats,"ID","Inside","Outside","Sole","Upper"));
         Iterator iterator = l.iterator();
         while(iterator.hasNext())
         {

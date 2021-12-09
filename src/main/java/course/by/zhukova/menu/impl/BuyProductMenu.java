@@ -7,6 +7,8 @@ import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.query.NativeQuery;
+import org.hibernate.query.internal.NativeQueryImpl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +24,6 @@ public class BuyProductMenu extends Menu
     private ProductMenu menu;
     private final String NUMBER = "\\d+";
     private List<ProductEntity> productEntityList;
-    private List<OrderEntity> orderEntities;
     private List<CartEntity> cartEntities;
 
     public BuyProductMenu(UserEntity user)
@@ -30,7 +31,6 @@ public class BuyProductMenu extends Menu
         registry = new StandardServiceRegistryBuilder().configure().build();
         factory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
         this.productEntityList = new ArrayList<>();
-        this.orderEntities = new ArrayList<>();
         this.cartEntities = new ArrayList<>();
         this.menu  = new ProductMenu(this.user);
         this.scanner = new Scanner(System.in);
@@ -40,7 +40,7 @@ public class BuyProductMenu extends Menu
     @Override
     public void showMenu()
     {
-        menu.showMenu();
+        menu.showProducts();
         System.out.println("Choice which shoes u should buy");
         System.out.println("0)Back");
     }
@@ -56,13 +56,13 @@ public class BuyProductMenu extends Menu
             switch(input)
             {
                 case "0" -> {
-                    return new UserMenu(this.user);
+                    return new UsersMenu(this.user);
                 }
                 default -> {
                     if(input.matches(NUMBER) && menu.isProductExist(Integer.parseInt(input)))
                     {
                         addOrder();
-                        return new UserMenu(this.user);
+                        return new UsersMenu(this.user);
                     }
                     else
                     {
@@ -79,7 +79,7 @@ public class BuyProductMenu extends Menu
     {
         Session session = factory.openSession();
         session.beginTransaction();
-        OrderEntity order = new OrderEntity();
+        OrdersEntity order = new OrdersEntity();
         CartEntity cart = findCart(user.getIduser(),cartEntities);
         order.setOrderCartId(cart.getCartUserId());
         order.setOrderProductId(Integer.parseInt(input));
@@ -100,10 +100,8 @@ public class BuyProductMenu extends Menu
 
         session.beginTransaction();
 
-        cartEntities = session.createQuery("from CartEntity ",CartEntity.class).getResultList();
-        orderEntities = session.createQuery("from OrderEntity ",OrderEntity.class).getResultList();
         productEntityList = menu.getProductList();
-
+        cartEntities = session.createQuery("from CartEntity ",CartEntity.class).getResultList();
 
         session.getTransaction().commit();
         session.close();
