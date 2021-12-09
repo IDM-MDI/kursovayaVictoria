@@ -9,6 +9,9 @@
             <column name="idProduct" sql-type="int"/>
             <generator class="increment"/>
         </id>
+        <property name="productName">
+            <column name="productName" sql-type="varchar(45)" length="45" not-null="true"/>
+        </property>
         <property name="productManufacturerId">
             <column name="productManufacturerID" sql-type="int"/>
         </property>
@@ -18,8 +21,8 @@
         <property name="productSize">
             <column name="productSize" sql-type="int"/>
         </property>
-        <property name="productSeasonId">
-            <column name="productSeasonID" sql-type="int"/>
+        <property name="productMaterialId">
+            <column name="productMaterialID" sql-type="int"/>
         </property>
     </class>
 </hibernate-mapping>

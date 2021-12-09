@@ -1,11 +1,13 @@
 package course.by.zhukova.menu.impl;
 
+import course.by.zhukova.entity.CartEntity;
 import course.by.zhukova.entity.RoleEntity;
 import course.by.zhukova.entity.UserEntity;
 import course.by.zhukova.menu.Menu;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
+import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.query.Query;
 
@@ -15,6 +17,8 @@ import java.util.Scanner;
 
 public class SignUpMenu extends Menu
 {
+    private SessionFactory factory;
+    private StandardServiceRegistry registry;
     private Scanner scanner;
     private String input;
     private UserEntity user;
@@ -22,6 +26,8 @@ public class SignUpMenu extends Menu
 
     public SignUpMenu(UserEntity user)
     {
+        registry = new StandardServiceRegistryBuilder().configure().build();
+        factory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
         this.user = user;
         this.scanner = new Scanner(System.in);
     }
@@ -58,6 +64,17 @@ public class SignUpMenu extends Menu
         user.setUserCreateTime(LocalDateTime.now().toString());
 
         session.save(this.user);
+        session.getTransaction().commit();
+        session.close();
+
+
+    }
+    private void addCart()
+    {
+        Session session = factory.openSession();
+        session.beginTransaction();
+        CartEntity cart = new CartEntity();
+        cart.setCartUserId(this.user.getIduser());
         session.getTransaction().commit();
         session.close();
     }

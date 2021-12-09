@@ -82,7 +82,7 @@ public class ManufacturerMenu extends Menu
                 }
                 default -> {
                     System.out.println("Try again");
-                    showMenu();
+                    continue;
                 }
             }
             return null;
@@ -158,13 +158,13 @@ public class ManufacturerMenu extends Menu
         return entity;
     }
 
-    private void showManufacturer()         //TODO: make joins
+    public void showManufacturer()         //TODO: make joins
     {
         Session session = factory.openSession();
 
         session.beginTransaction();
         List l = session.createQuery("select mf.idmanufacturer, mf.manufacturerName, mf.phoneNumber,mf.manufacturerMail,c.countryName " +
-                "from ManufacturerEntity mf left join mf.countryByManufacturerCountry c").getResultList();
+                "from ManufacturerEntity mf left join CountryEntity c ON mf.manufacturerCountry = c.id").getResultList();
 
         Iterator iterator = l.iterator();
         while(iterator.hasNext())
@@ -193,8 +193,9 @@ public class ManufacturerMenu extends Menu
         }
         return null;
     }
-    private void updateManufacturer()
+    private void updateManufacturer()           //TODO: show manuf
     {
+        showManufacturer();
         Session session = factory.openSession();
 
         session.beginTransaction();
@@ -226,6 +227,7 @@ public class ManufacturerMenu extends Menu
     }
     private void deleteManufacturer()           //READY
     {
+        showManufacturer();
         Session session = factory.openSession();
 
         session.beginTransaction();
@@ -236,7 +238,7 @@ public class ManufacturerMenu extends Menu
         {
             Integer id = Integer.parseInt(input);
             isManufacturerExist(id);
-            ManufacturerEntity entity = createManufacturer();
+            ManufacturerEntity entity = new ManufacturerEntity();
             entity.setIdmanufacturer(id);
 
             session.delete(entity);

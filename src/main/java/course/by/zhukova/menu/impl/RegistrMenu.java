@@ -44,7 +44,7 @@ public class RegistrMenu extends Menu
                 }
                 default -> {
                     System.out.println("Try again");
-                    showMenu();
+                    continue;
                 }
             }
             return null;

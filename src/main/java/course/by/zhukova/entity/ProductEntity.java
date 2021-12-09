@@ -7,10 +7,11 @@ import javax.persistence.*;
 public class ProductEntity
 {
     private Integer idProduct;
+    private String productName;
     private Integer productManufacturerId;
     private Integer productColorId;
     private Integer productSize;
-    private Integer productSeasonId;
+    private Integer productMaterialId;
 
     @Id
     @Column(name = "idProduct", nullable = false)
@@ -22,6 +23,18 @@ public class ProductEntity
     public void setIdProduct(Integer idProduct)
     {
         this.idProduct = idProduct;
+    }
+
+    @Basic
+    @Column(name = "productName", nullable = true, length = 45)
+    public String getProductName()
+    {
+        return productName;
+    }
+
+    public void setProductName(String productName)
+    {
+        this.productName = productName;
     }
 
     @Basic
@@ -61,15 +74,15 @@ public class ProductEntity
     }
 
     @Basic
-    @Column(name = "productSeasonID", nullable = false)
-    public Integer getProductSeasonId()
+    @Column(name = "productMaterialID", nullable = false)
+    public Integer getProductMaterialId()
     {
-        return productSeasonId;
+        return productMaterialId;
     }
 
-    public void setProductSeasonId(Integer productSeasonId)
+    public void setProductMaterialId(Integer productMaterialId)
     {
-        this.productSeasonId = productSeasonId;
+        this.productMaterialId = productMaterialId;
     }
 
     @Override
@@ -81,12 +94,13 @@ public class ProductEntity
         ProductEntity entity = (ProductEntity) o;
 
         if (idProduct != null ? !idProduct.equals(entity.idProduct) : entity.idProduct != null) return false;
+        if (productName != null ? !productName.equals(entity.productName) : entity.productName != null) return false;
         if (productManufacturerId != null ? !productManufacturerId.equals(entity.productManufacturerId) : entity.productManufacturerId != null)
             return false;
         if (productColorId != null ? !productColorId.equals(entity.productColorId) : entity.productColorId != null)
             return false;
         if (productSize != null ? !productSize.equals(entity.productSize) : entity.productSize != null) return false;
-        if (productSeasonId != null ? !productSeasonId.equals(entity.productSeasonId) : entity.productSeasonId != null)
+        if (productMaterialId != null ? !productMaterialId.equals(entity.productMaterialId) : entity.productMaterialId != null)
             return false;
 
         return true;
@@ -96,10 +110,11 @@ public class ProductEntity
     public int hashCode()
     {
         int result = idProduct != null ? idProduct.hashCode() : 0;
+        result = 31 * result + (productName != null ? productName.hashCode() : 0);
         result = 31 * result + (productManufacturerId != null ? productManufacturerId.hashCode() : 0);
         result = 31 * result + (productColorId != null ? productColorId.hashCode() : 0);
         result = 31 * result + (productSize != null ? productSize.hashCode() : 0);
-        result = 31 * result + (productSeasonId != null ? productSeasonId.hashCode() : 0);
+        result = 31 * result + (productMaterialId != null ? productMaterialId.hashCode() : 0);
         return result;
     }
 }
