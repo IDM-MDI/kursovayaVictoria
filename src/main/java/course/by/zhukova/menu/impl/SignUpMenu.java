@@ -48,6 +48,7 @@ public class SignUpMenu extends Menu
         System.out.println("Name:");
         user.setUserName(scanner.nextLine());
         saveUser();
+        addCart();
         this.user = new UserEntity();
         return new RegistrMenu(this.user);
     }
